@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: route53-cert
+  namespace: istio-system
+spec:
+  secretName: istio-ingressgateway-certs
+  issuerRef:
+    name: acme-route53-clusterissuer
+    kind: ClusterIssuer
+    group: cert-manager.io
+  # duration: 1h
+  #renewBefore: 2159h # 90 days is 129600m
+  commonName: vbarba.site
+  dnsNames:
+  - vbarba.site
